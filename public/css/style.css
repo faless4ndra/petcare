@@ -275,3 +275,179 @@ td {
         padding: 20px;
     }
 }
+
+.campo-pesquisa {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.campo-pesquisa input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #d8cfc1;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #fdfbf8;
+    color: #51483f;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
+}
+
+.campo-pesquisa input:focus {
+    border-color: #78916f;
+    box-shadow: 0 0 6px rgba(120, 145, 111, 0.25);
+    background-color: #ffffff;
+}
+
+.campo-pesquisa input::placeholder {
+    color: #8b8176;
+}
+
+/* Texto de telefone do dono na tabela de pets */
+.lista-clientes td small {
+    display: block;
+    color: #8b8176;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+/* ==================== FILTROS DE AGENDAMENTOS ==================== */
+
+.filtros-agendamentos {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 18px;
+    background-color: #f8f5ef;
+    border-radius: 12px;
+}
+
+.filtros-agendamentos .filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.filtros-agendamentos label {
+    font-weight: bold;
+    color: #536b4e;
+}
+
+.filtros-agendamentos input,
+.filtros-agendamentos select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8cfc1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #51483f;
+    font-size: 14px;
+}
+
+.filtros-agendamentos input:focus,
+.filtros-agendamentos select:focus {
+    outline: none;
+    border-color: #78916f;
+    box-shadow: 0 0 5px rgba(120, 145, 111, 0.25);
+}
+
+.filtros-agendamentos button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #b87e67;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filtros-agendamentos button:hover {
+    background-color: #a56b55;
+}
+
+/* ==================== STATUS DOS AGENDAMENTOS ==================== */
+
+.status-agendamento {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.status-agendado {
+    background-color: #fff0d5;
+    color: #9b6819;
+}
+
+.status-em-andamento {
+    background-color: #dcecff;
+    color: #35669b;
+}
+
+.status-concluido {
+    background-color: #dcebd8;
+    color: #466c40;
+}
+
+.status-cancelado {
+    background-color: #f5dedd;
+    color: #a34d48;
+}
+
+.status-padrao {
+    background-color: #eeeeee;
+    color: #555555;
+}
+
+/* ==================== RESPONSIVIDADE DOS FILTROS ==================== */
+
+@media (max-width: 600px) {
+
+    .filtros-agendamentos {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros-agendamentos .filtro {
+        width: 100%;
+    }
+
+    .filtros-agendamentos button {
+        width: 100%;
+    }
+
+}
+/* CONTADOR DE PETS */
+
+.contador-pets {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f1f5ed;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border: 1px solid #dce5d7;
+}
+
+.contador-pets span {
+    font-size: 35px;
+}
+
+.contador-pets p {
+    color: #536b4e;
+    margin-bottom: 5px;
+}
+
+.contador-pets h3 {
+    color: #536b4e;
+    font-size: 28px;
+    margin: 0;
+}

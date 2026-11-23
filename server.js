@@ -71,7 +71,21 @@ app.delete('/api/clientes/:id', function (req, res) {
 
 // ==================== PETS ====================
 
-// Listar pets com o nome do dono
+// CONTAR PETS CADASTRADOS (COUNT)
+app.get('/api/pets/total', function (req, res) {
+    const sql = 'SELECT COUNT(*) AS total FROM pets';
+
+    conexao.query(sql, function (erro, resultados) {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao contar pets');
+        }
+
+        res.json(resultados[0]);
+    });
+});
+
+// Listar pets com o nome do dono (JOIN)
 app.get('/api/pets', function (req, res) {
     const sql = `
         SELECT pets.*, clientes.nome AS nome_cliente
@@ -202,6 +216,119 @@ app.delete('/api/servicos/:id', function (req, res) {
 
         res.send('Serviço excluído com sucesso!');
     });
+});
+
+// ==================== AGENDAMENTOS ====================
+
+// Listar agendamentos com informações do pet, cliente e serviço
+// CONSULTA JOIN
+app.get('/api/agendamentos', function (req, res) {
+    const sql = `
+        SELECT
+            agendamentos.id_agendamento,
+            agendamentos.id_pet,
+            agendamentos.id_servico,
+            agendamentos.data_agendamento,
+            agendamentos.status,
+            pets.nome AS nome_pet,
+            clientes.nome AS nome_cliente,
+            servicos.nome AS nome_servico,
+            servicos.valor AS valor_servico
+        FROM agendamentos
+        INNER JOIN pets ON agendamentos.id_pet = pets.id_pet
+        INNER JOIN clientes ON pets.id_cliente = clientes.id_cliente
+        INNER JOIN servicos ON agendamentos.id_servico = servicos.id_servico
+        ORDER BY agendamentos.data_agendamento ASC
+    `;
+
+    conexao.query(sql, function (erro, resultados) {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao buscar agendamentos');
+        }
+
+        res.json(resultados);
+    });
+});
+
+// Cadastrar agendamento
+app.post('/api/agendamentos', function (req, res) {
+    const { id_pet, id_servico, data_agendamento, status } = req.body;
+
+    if (!id_pet || !id_servico || !data_agendamento) {
+        return res.status(400).send('Pet, serviço, data e horário são obrigatórios');
+    }
+
+    // Ajusta o formato da data para o MySQL
+    const dataFormatada = data_agendamento.replace('T', ' ');
+
+    const sql = `
+        INSERT INTO agendamentos
+        (id_pet, id_servico, data_agendamento, status)
+        VALUES (?, ?, ?, ?)
+    `;
+
+    conexao.query(
+        sql,
+        [id_pet, id_servico, dataFormatada, status || 'Agendado'],
+        function (erro, resultado) {
+            if (erro) {
+                console.log(erro);
+                return res.status(500).send('Erro ao cadastrar agendamento');
+            }
+
+            res.send('Agendamento cadastrado com sucesso!');
+        }
+    );
+});
+
+// Editar agendamento
+app.put('/api/agendamentos/:id', function (req, res) {
+    const id = req.params.id;
+    const { id_pet, id_servico, data_agendamento, status } = req.body;
+
+    if (!id_pet || !id_servico || !data_agendamento) {
+        return res.status(400).send('Pet, serviço, data e horário são obrigatórios');
+    }
+
+    const dataFormatada = data_agendamento.replace('T', ' ');
+
+    const sql = `
+        UPDATE agendamentos
+        SET id_pet = ?, id_servico = ?, data_agendamento = ?, status = ?
+        WHERE id_agendamento = ?
+    `;
+
+    conexao.query(
+        sql,
+        [id_pet, id_servico, dataFormatada, status || 'Agendado', id],
+        function (erro, resultado) {
+            if (erro) {
+                console.log(erro);
+                return res.status(500).send('Erro ao editar agendamento');
+            }
+
+            res.send('Agendamento atualizado com sucesso!');
+        }
+    );
+});
+
+// Excluir agendamento
+app.delete('/api/agendamentos/:id', function (req, res) {
+    const id = req.params.id;
+
+    conexao.query(
+        'DELETE FROM agendamentos WHERE id_agendamento = ?',
+        [id],
+        function (erro, resultado) {
+            if (erro) {
+                console.log(erro);
+                return res.status(500).send('Erro ao excluir agendamento');
+            }
+
+            res.send('Agendamento excluído com sucesso!');
+        }
+    );
 });
 
 // ==================== SITE ====================

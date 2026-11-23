@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -107,7 +106,17 @@
             </div>
 
             <div class="lista-clientes">
+
                 <h2>Clientes cadastrados</h2>
+
+                <!-- PESQUISA DE CLIENTES -->
+                <div class="campo-pesquisa">
+                    <input
+                        type="text"
+                        id="pesquisa-clientes"
+                        placeholder="🔎 Pesquisar cliente por nome ou telefone..."
+                    >
+                </div>
 
                 <table>
                     <thead>
@@ -121,6 +130,7 @@
 
                     <tbody id="tabela-clientes"></tbody>
                 </table>
+
             </div>
 
         </section>
@@ -169,7 +179,27 @@
             </div>
 
             <div class="lista-clientes">
+
                 <h2>Pets cadastrados</h2>
+
+                <!-- CONTADOR DE PETS -->
+                <div class="contador-pets">
+                    <span>🐶</span>
+
+                    <div>
+                        <p>Total de pets cadastrados</p>
+                        <h3 id="total-pets">0</h3>
+                    </div>
+                </div>
+
+                <!-- PESQUISA DE PET PELO TELEFONE DO DONO -->
+                <div class="campo-pesquisa">
+                    <input
+                        type="text"
+                        id="pesquisa-pets"
+                        placeholder="🔎 Pesquisar pets pelo telefone do dono..."
+                    >
+                </div>
 
                 <table>
                     <thead>
@@ -185,6 +215,7 @@
 
                     <tbody id="tabela-pets"></tbody>
                 </table>
+
             </div>
 
         </section>
@@ -324,6 +355,32 @@
 
                 <h2>Agendamentos cadastrados</h2>
 
+                <!-- FILTROS DE AGENDAMENTOS -->
+                <div class="filtros-agendamentos">
+
+                    <div class="filtro">
+                        <label for="filtro-data-agendamento">Filtrar por data</label>
+                        <input type="date" id="filtro-data-agendamento">
+                    </div>
+
+                    <div class="filtro">
+                        <label for="filtro-status-agendamento">Filtrar por status</label>
+                        <select id="filtro-status-agendamento">
+                            <option value="">Todos os status</option>
+                            <option value="Agendado">Agendado</option>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="limpar-filtros-agendamento">
+                        Limpar filtros
+                    </button>
+
+                </div>
+
+                <!-- TABELA DE AGENDAMENTOS -->
                 <table>
                     <thead>
                         <tr>
