@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🐾 PetCare</div>
+
+        <nav>
+            <a href="#" onclick="mostrarInicio()">Início</a>
+            <a href="#" onclick="mostrarClientes()">Clientes</a>
+            <a href="#" onclick="mostrarPets()">Pets</a>
+            <a href="#" onclick="mostrarServicos()">Serviços</a>
+            <a href="#" onclick="mostrarAgendamentos()">Agendamentos</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Página inicial -->
+        <section id="pagina-inicio" class="inicio">
+
+            <div class="inicio-conteudo">
+
+                <div class="inicio-texto">
+                    <p class="subtitulo">🐾 Cuidado com carinho</p>
+
+                    <h1>Um cuidado especial para cada pet.</h1>
+
+                    <p>
+                        Bem-vindo ao PetCare! Aqui você organiza seus clientes,
+                        pets e agendamentos de maneira simples e prática.
+                    </p>
+
+                    <button onclick="mostrarClientes()">Cadastrar cliente</button>
+                </div>
+
+            </div>
+
+            <div class="atalhos-inicio">
+
+                <div class="atalho" onclick="mostrarClientes()">
+                    <span>👥</span>
+                    <h3>Clientes</h3>
+                    <p>Cadastros</p>
+                </div>
+
+                <div class="atalho" onclick="mostrarPets()">
+                    <span>🐶</span>
+                    <h3>Pets</h3>
+                    <p>Seus animais</p>
+                </div>
+
+                <div class="atalho" onclick="mostrarServicos()">
+                    <span>🛁</span>
+                    <h3>Serviços</h3>
+                    <p>Banho e tosa</p>
+                </div>
+
+                <div class="atalho" onclick="mostrarAgendamentos()">
+                    <span>📅</span>
+                    <h3>Agendamentos</h3>
+                    <p>Horários</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Página de clientes -->
+        <section id="pagina-clientes" class="pagina-clientes" style="display: none;">
+
+            <div class="titulo-pagina">
+                <h1>Clientes</h1>
+                <p>Cadastre e organize os clientes do PetCare.</p>
+            </div>
+
+            <div class="formulario">
+                <h2>Novo cliente</h2>
+
+                <form id="form-cliente">
+                    <input type="hidden" id="id_cliente">
+
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Nome completo" required>
+
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" placeholder="(00) 00000-0000">
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="email@email.com">
+
+                    <div class="botoes-formulario">
+                        <button type="submit" id="btn-salvar">Cadastrar cliente</button>
+
+                        <button type="button" id="btn-cancelar" onclick="limparFormulario()" style="display: none;">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lista-clientes">
+                <h2>Clientes cadastrados</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabela-clientes"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Página de pets -->
+        <section id="pagina-pets" class="pagina-clientes" style="display: none;">
+
+            <div class="titulo-pagina">
+                <h1>Pets</h1>
+                <p>Cadastre e organize os animais dos seus clientes.</p>
+            </div>
+
+            <div class="formulario">
+                <h2>Novo pet</h2>
+
+                <form id="form-pet">
+
+                    <input type="hidden" id="id_pet">
+
+                    <label for="nome_pet">Nome do pet</label>
+                    <input type="text" id="nome_pet" placeholder="Nome do animal" required>
+
+                    <label for="especie">Espécie</label>
+                    <input type="text" id="especie" placeholder="Ex: Cachorro ou gato" required>
+
+                    <label for="raca">Raça</label>
+                    <input type="text" id="raca" placeholder="Raça do animal">
+
+                    <label for="idade">Idade</label>
+                    <input type="number" id="idade" placeholder="Idade em anos" min="0">
+
+                    <label for="dono_pet">Dono do pet</label>
+                    <select id="dono_pet" required>
+                        <option value="">Selecione o cliente</option>
+                    </select>
+
+                    <div class="botoes-formulario">
+                        <button type="submit" id="btn-salvar-pet">Cadastrar pet</button>
+
+                        <button type="button" id="btn-cancelar-pet" onclick="limparFormularioPet()" style="display: none;">
+                            Cancelar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="lista-clientes">
+                <h2>Pets cadastrados</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Espécie</th>
+                            <th>Raça</th>
+                            <th>Idade</th>
+                            <th>Dono</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabela-pets"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Página de Serviços -->
+        <section id="pagina-servicos" class="pagina-clientes" style="display: none;">
+
+            <div class="titulo-pagina">
+                <h1>Serviços</h1>
+                <p>Confira e gerencie os serviços oferecidos pela PetCare.</p>
+            </div>
+
+            <div class="lista-clientes">
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <h2>Serviços disponíveis</h2>
+
+                    <button type="button" onclick="mostrarFormularioServico()">
+                        + Adicionar serviço
+                    </button>
+                </div>
+
+                <!-- Formulário de serviço -->
+                <div id="formulario-servico" style="display: none; margin: 20px 0;">
+
+                    <h3 id="titulo-form-servico">Cadastrar novo serviço</h3>
+
+                    <form id="form-servico">
+
+                        <input type="hidden" id="id_servico">
+
+                        <label for="nome_servico">Nome do serviço</label>
+                        <input type="text" id="nome_servico" placeholder="Ex: Hidratação" required>
+
+                        <label for="valor_servico">Valor (R$)</label>
+                        <input type="number" id="valor_servico" step="0.01" min="0" placeholder="Ex: 80.00" required>
+
+                        <label for="descricao_servico">Descrição</label>
+                        <textarea id="descricao_servico" placeholder="Descreva o serviço"></textarea>
+
+                        <div class="botoes-formulario">
+                            <button type="submit" id="btn-salvar-servico">Cadastrar serviço</button>
+
+                            <button type="button" onclick="limparFormularioServico()">
+                                Cancelar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Tabela de serviços -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome do serviço</th>
+                            <th>Valor</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabela-servicos"></tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Página de Agendamentos -->
+        <section id="pagina-agendamentos" class="pagina-clientes" style="display: none;">
+
+            <div class="titulo-pagina">
+                <h1>Agendamentos</h1>
+                <p>Organize os horários de atendimento dos pets.</p>
+            </div>
+
+            <div class="formulario">
+
+                <h2>Novo agendamento</h2>
+
+                <form id="form-agendamento">
+
+                    <input type="hidden" id="id_agendamento">
+
+                    <label for="cliente_agendamento">Cliente</label>
+                    <select id="cliente_agendamento" required>
+                        <option value="">Selecione o cliente</option>
+                    </select>
+
+                    <label for="pet_agendamento">Pet</label>
+                    <select id="pet_agendamento" required>
+                        <option value="">Selecione o pet</option>
+                    </select>
+
+                    <label for="servico_agendamento">Serviço</label>
+                    <select id="servico_agendamento" required>
+                        <option value="">Selecione o serviço</option>
+                    </select>
+
+                    <label for="data_agendamento">Data</label>
+                    <input type="date" id="data_agendamento" required>
+
+                    <label for="hora_agendamento">Horário</label>
+                    <input type="time" id="hora_agendamento" required>
+
+                    <label for="observacoes_agendamento">Observações</label>
+                    <textarea id="observacoes_agendamento" placeholder="Observações sobre o atendimento"></textarea>
+
+                    <label for="status_agendamento">Status</label>
+                    <select id="status_agendamento">
+                        <option value="Agendado">Agendado</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+
+                    <div class="botoes-formulario">
+
+                        <button type="submit" id="btn-salvar-agendamento">
+                            Cadastrar agendamento
+                        </button>
+
+                        <button type="button" id="btn-cancelar-agendamento" onclick="limparFormularioAgendamento()" style="display: none;">
+                            Cancelar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Lista de agendamentos -->
+            <div class="lista-clientes">
+
+                <h2>Agendamentos cadastrados</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Pet</th>
+                            <th>Serviço</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabela-agendamentos"></tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

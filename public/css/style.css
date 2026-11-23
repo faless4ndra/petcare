@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f0e5;
+    color: #51483f;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ffffff;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #6c8468;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #51483f;
+    font-size: 15px;
+}
+
+nav a:hover,
+nav a.ativo {
+    color: #78916f;
+    font-weight: bold;
+}
+
+/* Tela inicial */
+.inicio {
+    padding: 40px 70px;
+}
+
+.inicio-conteudo {
+    background-image:
+        linear-gradient(rgba(230, 236, 223, 0.55), rgba(230, 236, 223, 0.55)),
+        url("/images/group-portrait-adorable-puppies.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    min-height: 350px;
+}
+
+.inicio-texto {
+    max-width: 500px;
+}
+
+.subtitulo {
+    color: #a66f59;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.inicio-texto h1 {
+    font-size: 38px;
+    color: #536b4e;
+    margin-bottom: 20px;
+}
+
+.inicio-texto p:not(.subtitulo) {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #b87e67;
+    color: white;
+    border: none;
+    padding: 13px 23px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a56b55;
+}
+
+/* Atalhos da tela inicial */
+.atalhos-inicio {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.atalho {
+    background-color: #ffffff;
+    padding: 25px 20px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.atalho:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px #d8cfc1;
+}
+
+.atalho span {
+    font-size: 30px;
+}
+
+.atalho h3 {
+    color: #536b4e;
+    margin: 12px 0 8px;
+}
+
+.atalho p {
+    font-size: 14px;
+    color: #8b8176;
+}
+
+/* Páginas de clientes e pets */
+.pagina-clientes {
+    padding: 40px 70px;
+}
+
+.titulo-pagina {
+    margin-bottom: 25px;
+}
+
+.titulo-pagina h1 {
+    color: #536b4e;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.titulo-pagina p {
+    color: #8b8176;
+}
+
+/* Formulário */
+.formulario {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.formulario h2,
+.lista-clientes h2 {
+    color: #536b4e;
+    margin-bottom: 20px;
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.formulario input,
+.formulario select {
+    padding: 12px;
+    border: 1px solid #d8cfc1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    background-color: #ffffff;
+    color: #51483f;
+}
+
+.formulario select {
+    cursor: pointer;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    border-color: #78916f;
+}
+
+.botoes-formulario {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Listas de clientes e pets */
+.lista-clientes {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee7dc;
+}
+
+th {
+    color: #536b4e;
+    background-color: #f1f5ed;
+}
+
+td {
+    font-size: 14px;
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .inicio {
+        padding: 25px 20px;
+    }
+
+    .inicio-conteudo {
+        padding: 25px;
+        min-height: 300px;
+    }
+
+    .inicio-texto h1 {
+        font-size: 30px;
+    }
+
+    .atalhos-inicio {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .pagina-clientes {
+        padding: 25px 20px;
+    }
+
+    .formulario,
+    .lista-clientes {
+        padding: 20px;
+    }
+}
